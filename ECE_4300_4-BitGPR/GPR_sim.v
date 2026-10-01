@@ -12,17 +12,17 @@ module GPR_sim();
         $dumpfile("TestBenchWaveForm.vcd");
         $dumpvars(0, GPR_sim);
         S = 0;
-        D = 4'b1100;
+        D = 4'b1010;
         CLR = 0;
         CLK = 0;
         L_in = 0;
         R_in = 0;
-        #5 CLR = 1;
-        #10 S = 2'd3;
+        #10 CLR = 1; S = 2'd0;
+        #10 D = 4'b1100; S = 2'd3;
         #10 S = 2'd1;
         #10 S = 2'd2;
-        #10 S = 1; L_in = 1;
-        #10 S = 2; R_in = 1;
+        #10 S = 1; L_in = 1; R_in = 1;
+        #10 S = 2; 
         #10 $finish;
     end
 endmodule
