@@ -1,0 +1,60 @@
+#! /opt/homebrew/Cellar/icarus-verilog/13.0/bin/vvp
+:ivl_version "13.0 (stable)" "(v13_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/va_math.vpi";
+S_0x12560e880 .scope module, "mux_tb" "mux_tb" 2 1;
+ .timescale 0 0;
+P_0x125608530 .param/l "WIDTH" 0 2 1, +C4<00000000000000000000000000100000>;
+v0x12561e8b0_0 .var "in_a", 31 0;
+v0x12561e940_0 .var "in_b", 31 0;
+v0x12561e9d0_0 .net "out_y", 31 0, L_0x12561efa0;  1 drivers
+v0x12561eaa0_0 .var "select", 0 0;
+S_0x1256071d0 .scope module, "m0" "mux" 2 7, 3 1 0, S_0x12560e880;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "a_true";
+    .port_info 1 /INPUT 32 "b_false";
+    .port_info 2 /INPUT 1 "sel";
+    .port_info 3 /OUTPUT 32 "y";
+P_0x125607b30 .param/l "WIDTH" 0 3 1, +C4<00000000000000000000000000100000>;
+L_0x12561ec50 .functor AND 32, v0x12561e8b0_0, L_0x12561eb50, C4<11111111111111111111111111111111>, C4<11111111111111111111111111111111>;
+L_0x12561ed60 .functor NOT 1, v0x12561eaa0_0, C4<0>, C4<0>, C4<0>;
+L_0x12561eeb0 .functor AND 32, v0x12561e940_0, L_0x12561edd0, C4<11111111111111111111111111111111>, C4<11111111111111111111111111111111>;
+L_0x12561efa0 .functor OR 32, L_0x12561ec50, L_0x12561eeb0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x125607340_0 .net *"_ivl_1", 31 0, L_0x12561eb50;  1 drivers
+v0x12561e230_0 .net *"_ivl_2", 31 0, L_0x12561ec50;  1 drivers
+v0x12561e2e0_0 .net *"_ivl_4", 0 0, L_0x12561ed60;  1 drivers
+v0x12561e3a0_0 .net *"_ivl_7", 31 0, L_0x12561edd0;  1 drivers
+v0x12561e450_0 .net *"_ivl_8", 31 0, L_0x12561eeb0;  1 drivers
+v0x12561e540_0 .net "a_true", 31 0, v0x12561e8b0_0;  1 drivers
+v0x12561e5f0_0 .net "b_false", 31 0, v0x12561e940_0;  1 drivers
+v0x12561e6a0_0 .net "sel", 0 0, v0x12561eaa0_0;  1 drivers
+v0x12561e740_0 .net "y", 31 0, L_0x12561efa0;  alias, 1 drivers
+L_0x12561eb50 .repeat 32, 32, v0x12561eaa0_0;
+L_0x12561edd0 .repeat 32, 32, L_0x12561ed60;
+    .scope S_0x12560e880;
+T_0 ;
+    %vpi_call 2 10 "$dumpfile", "MuxTestBenchWaveForm.vcd" {0 0 0};
+    %vpi_call 2 11 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x12560e880 {0 0 0};
+    %pushi/vec4 1717986918, 0, 32;
+    %store/vec4 v0x12561e8b0_0, 0, 32;
+    %pushi/vec4 2863311530, 0, 32;
+    %store/vec4 v0x12561e940_0, 0, 32;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x12561eaa0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x12561eaa0_0, 0, 1;
+    %delay 10, 0;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "mux_tb.v";
+    "mux.v";

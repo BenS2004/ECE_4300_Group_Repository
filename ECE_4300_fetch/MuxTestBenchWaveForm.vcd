@@ -1,0 +1,44 @@
+$date
+	Mon Oct 12 14:23:25 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module mux_tb $end
+$var wire 32 ! out_y [31:0] $end
+$var parameter 32 " WIDTH $end
+$var reg 32 # in_a [31:0] $end
+$var reg 32 $ in_b [31:0] $end
+$var reg 1 % select $end
+$scope module m0 $end
+$var wire 32 & a_true [31:0] $end
+$var wire 32 ' b_false [31:0] $end
+$var wire 1 % sel $end
+$var wire 32 ( y [31:0] $end
+$var parameter 32 ) WIDTH $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100000 )
+b100000 "
+$end
+#0
+$dumpvars
+b10101010101010101010101010101010 (
+b10101010101010101010101010101010 '
+b1100110011001100110011001100110 &
+0%
+b10101010101010101010101010101010 $
+b1100110011001100110011001100110 #
+b10101010101010101010101010101010 !
+$end
+#10
+b1100110011001100110011001100110 !
+b1100110011001100110011001100110 (
+1%
+#20
