@@ -8,7 +8,7 @@ module incrementer #(parameter WIDTH = 32)(
     assign pc_out = pc;
 
     always @(posedge clk or posedge rst)begin
-        if(!rst) begin
+        if(rst) begin
             pc = 32'b0;
         end else begin
             pc = pc_in + 1;

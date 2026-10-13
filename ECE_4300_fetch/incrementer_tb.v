@@ -19,7 +19,9 @@ module incrementer_tb #(parameter WIDTH = 32)();
         pc_input = {8{4'b1011}};
         #10;
         rst = 1;
-        #20;
+        #10
+        rst = 0;
+        #10;
         pc_input = pc_output;
         #10;
         pc_input = pc_output;
