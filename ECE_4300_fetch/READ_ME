@@ -1,0 +1,40 @@
+Instruction Fetch 
+
+Project Overview
+This project implements the Instruction Fetch (IF) stage of a processor using Verilog HDL. The design is divided into individual modules that can be tested 
+independently.
+
+**Design Modules**
+    1. Mux (mux.v)
+    Selects between two 32-bit inputs based on a one-bit selection signal.
+    •	sel = 1: Selects a_true.
+    •	sel = 0: Selects b_false.
+    •	Uses a parameter to configure the data width.
+
+    2. Instruction Memory (instrMem.v)
+    Stores instruction words and returns the instruction associated with a given address.
+    •	Uses a clock and reset signal.
+    •	Supports read and write operations through a shared bidirectional data bus.
+    •	The testbench writes dummy instruction patterns to the first 10 addresses and reads them back for verification.
+
+    3. Incrementer (incrementer.v)
+    Calculates the next program counter value by adding one to the input.
+    •	Uses a clock and reset signal.
+    •	Captures the incremented input on the rising edge of the clock.
+    •	Resets its internal register to zero when reset is asserted.
+
+    4. Program Counter (pc.v)
+    Stores the current program counter value and updates it according to the clock and reset behavior defined by the module.
+
+
+    6. Fetch Stage (fetch.v)
+    Integrates the PC, instruction memory, incrementer, mux, and IF/ID latch into one module.
+    The stage selects the next PC, fetches the corresponding instruction, and passes the instruction and next-PC value to the IF/ID interface.
+
+
+**Testbenches**
+Each individual module has a corresponding testbench where applicable.
+•	mux_tb.v: Tests both mux selection paths.
+•	instrMem_tb.v: Tests writing and reading instruction patterns.
+•	incrementer_tb.v: Tests reset behavior and incrementing across clock cycles.
+
