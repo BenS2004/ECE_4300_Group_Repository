@@ -4,13 +4,15 @@ module fetch_tb #(parameter WIDTH = 32)();
     reg[WIDTH - 1:0] ex_mem_instr, ex_mem_npc;
     wire[WIDTH - 1:0] if_id_npc, data;
 
-    assign data = rwn ? {WIDTH{1'BZ}} : ex_mem_instr;
+    assign data = rwn ? ex_mem_instr : {32{1'BZ}};
 
-    wire [WIDTH - 1:0] pc_out, pc_mux, next_pc, instr_data_mem, instr_data_latch;
+    wire [31:0] pc_out, pc_mux, next_pc, instr_data_mem, instr_data_latch, instr_data_out;
 
-    assign instr_data_mem = rwn ? data : {32{1'BZ}};
+    assign instr_data_mem = rwn ? {32{1'BZ}} : ex_mem_npc;
 
-    assign instr_data_latch = rwn ? {32{1'B0}} : instr_data_mem;
+    assign instr_data_latch = rwn ? instr_data_mem : {32{1'b0}};
+
+    assign instr_data_out = rwn ? data : {32{1'BZ}};
 
     mux m0 (.y(pc_mux), .a_true(ex_mem_npc), .b_false(next_pc), .sel(ex_mem_pc_src));
 
@@ -20,9 +22,9 @@ module fetch_tb #(parameter WIDTH = 32)();
 
     instrMem inMem0(.clk(clk), .rst(rst), .rwn(rwn),  .addr(pc_out), .data(instr_data_mem));
 
-    ifIdLatch ifIdLatch0(.clk(clk), .rst(rst), .pc_in(next_pc), .instr_in(instr_data_latch), .pc_out(if_id_npc), .instr_out(data));
-/*
-    fetch fetch0(.clk(clk), .rst(rst), .rwn(rwn), .ex_mem_pc_src(src),
+    ifIdLatch ifIdLatch0(.clk(clk), .rst(rst), .pc_in(next_pc), .instr_in(instr_data_latch), .pc_out(if_id_npc), .instr_out(instr_data_out));
+
+/*   fetch fetch0(.clk(clk), .rst(rst), .rwn(rwn), .ex_mem_pc_src(src),
                 .ex_mem_npc(ex_mem_npc),
                 .if_id_instr(data), .if_id_npc(if_id_npc));
 */
