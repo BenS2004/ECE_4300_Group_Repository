@@ -11,7 +11,7 @@ module incrementer #(parameter WIDTH = 32)(
         if(rst) begin
             pc = 32'b0;
         end else begin
-            pc = pc_in + 1;
+            pc = pc_in + 1'b1;
         end
     end
 

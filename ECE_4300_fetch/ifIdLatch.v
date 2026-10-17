@@ -14,6 +14,8 @@ module ifIdLatch #(parameter WIDTH = 32)(
             instr_int = 32'h0;
         end else begin
             pc_int = pc_in;
+            //pc_int = pc_in&({{31{1'b0}}, 1'b1});
+            //pc_int = pc_in & 32'h00000001;
             instr_int = instr_in;
         end
     end
