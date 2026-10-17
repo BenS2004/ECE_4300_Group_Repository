@@ -1,20 +1,25 @@
 module fetch(
-    input wire clk, rst, ex_mem_pc_src,
+    input wire clk, rst, ex_mem_pc_src, rwn, 
     input wire [31:0] ex_mem_npc,
-    output wire [31:0] if_id_instr, if_id_npc
+    inout wire [31:0] if_id_instr,
+    output wire [31:0] if_id_npc
 );
 
 //internal
-wire [31:0] pc_out, pc_mux, next_pc, instr_data;
+wire [31:0] pc_out, pc_mux, next_pc, instr_data_mem, instr_data_latch;
 
-mux m0 (.y(), .a_true(), .b_false(), .sel());
+assign instr_data_mem = rwn ? if_id_instr : {32{1'BZ}};
 
-pc pc0(.pc_in(), .pc_out(), .clk());
+assign instr_data_latch = rwn ? {32{1'B0}} : instr_data_mem;
 
-incrementer in0(.clk(), .rst(), .pcin(), .pcout());
+mux m0 (.y(pc_mux), .a_true(ex_mem_npc), .b_false(next_pc), .sel(ex_mem_pc_src));
 
-instrMem inMem0(.clk(), .rst(), .addr(), .data());
+pc pc0(.pc_in(pc_mux), .pc_out(pc_out), .clk(clk));
 
-ifIdLatch ifIdLatch0(.clk(), .rst(), .pc_in(), .instr_in(), .pc_out(), .instr_out());
+incrementer in0(.clk(clk), .rst(rst), .pc_in(pc_out), .pc_out(next_pc));
+
+instrMem inMem0(.clk(clk), .rst(rst), .rwn(rwn),  .addr(pc_out), .data(instr_data_mem));
+
+ifIdLatch ifIdLatch0(.clk(clk), .rst(rst), .pc_in(next_pc), .instr_in(instr_data_latch), .pc_out(if_id_npc), .instr_out(if_id_instr));
 
 endmodule
