@@ -20,7 +20,7 @@ module fetch_tb #(parameter WIDTH = 32)();
 
     incrementer in0(.clk(clk), .rst(rst), .pc_in(pc_out), .pc_out(next_pc));
 
-    instrMem inMem0(.clk(clk), .rst(rst), .rwn(rwn),  .addr(pc_out), .data(instr_data_mem));
+    instrMem inMem0(.clk(clk), .rst(rst), .rwn(rwn),  .addr(ex_mem_npc), .data(instr_data_mem));
 
     ifIdLatch ifIdLatch0(.clk(clk), .rst(rst), .pc_in(next_pc), .instr_in(instr_data_latch), .pc_out(if_id_npc), .instr_out(instr_data_out));
 
@@ -46,17 +46,20 @@ module fetch_tb #(parameter WIDTH = 32)();
         #10;
         rst = 0;
         rwn = 0;
+        ex_mem_pc_src = 1;
         for(i = 0; i < 10; i = i + 1)begin
             ex_mem_instr = {(WIDTH/4){i[3:0]}};
+            ex_mem_npc = i;
             $display("Instr: %h, PC: %h", ex_mem_instr, if_id_npc);
             #10;
         end;
         rwn = 1;
         ex_mem_pc_src = 1;
+        ex_mem_npc = 0;
         #10;
         ex_mem_pc_src = 0;
         for(i = 0; i < 10; i = i + 1)begin
-            $display("Instr: %h, PC: %h", data, if_id_npc);
+            $display("Instr: %h, PC: %h", instr_data_mem, if_id_npc);
             #10;
         end
         $finish;

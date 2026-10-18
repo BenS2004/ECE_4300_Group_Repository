@@ -1,7 +1,7 @@
 module instrMem_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
-
+    
     reg clk, rst, rwn;
-    reg[WIDTH - 1:0] addr, data_in;
+    reg [WIDTH - 1:0] addr, data_in;
     wire[WIDTH - 1:0] data;
 
     assign data = rwn ? {WIDTH{1'BZ}} : data_in;
