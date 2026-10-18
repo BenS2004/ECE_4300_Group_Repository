@@ -4,12 +4,9 @@ module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
     wire[WIDTH - 1:0] data, instr_input, instr_output, pc_next, pc_output, pc_out_latch, addr;
 
     assign data = rwn ? {WIDTH{1'BZ}} : data_in;
-    //mux m1(.sel(rwn), .y(data), .a_true({WIDTH{1'BZ}}), .b_false(data_in));
 
     assign instr_input = rwn ? data : {WIDTH{1'B0}};
-    //mux m2(.sel(rwn), .y(instr_input), .a_true(data), .b_false({WIDTH{1'B0}}));
     
-    //mux m0(.sel(sel), .y(addr), .a_true(pc_input), .b_false(pc_next));
     assign addr = sel ? pc_input : pc_next;
 
     instrMem Mem0(.clk(clk), .rst(rst), .rwn(rwn),
@@ -34,7 +31,7 @@ module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
         rwn = 1;
         sel = 1;
         pc_input = 0;
-        #20;
+        #10;
         rst = 0;
         #10;
         rwn = 0;
