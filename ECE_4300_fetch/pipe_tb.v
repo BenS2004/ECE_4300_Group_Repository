@@ -1,7 +1,7 @@
 module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
     reg clk, rst, rwn, sel;
-    reg [WIDTH - 1:0] data_in, pc_input;
-    wire[WIDTH - 1:0] data, instr_input, instr_output, pc_next, pc_output, pc_out_latch, addr;
+    reg [WIDTH - 1:0] data_in, pc_input, instr_output, pc_out_latch;
+    wire[WIDTH - 1:0] data, instr_input, pc_next, pc_output, addr; //, instr_output, pc_out_latch;
 
     assign data = rwn ? {WIDTH{1'BZ}} : data_in;
 
@@ -12,8 +12,17 @@ module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
     instrMem Mem0(.clk(clk), .rst(rst), .rwn(rwn),
         .addr(pc_output), .data(data));
     
-    ifIdLatch Latch0(.clk(clk), .rst(rst), .pc_in(pc_next), .pc_out(pc_out_latch),
-        .instr_in(instr_input), .instr_out(instr_output));
+    /*ifIdLatch Latch0(.clk(clk), .rst(rst), .pc_in(pc_next), .pc_out(pc_out_latch),
+        .instr_in(instr_input), .instr_out(instr_output));*/
+    
+    always @(posedge clk or posedge rst)begin
+        pc_out_latch = pc_next;
+        instr_output = instr_input;
+        if(rst)begin
+            pc_out_latch = 32'h0;
+            instr_output = 32'h0;
+        end
+    end
 
     pc programcounter(.pc_in(addr), .pc_out(pc_output), .clk(clk));
 
