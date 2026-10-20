@@ -7,16 +7,16 @@
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/vhdl_textio.vpi";
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/v2005_math.vpi";
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/va_math.vpi";
-S_0x156e10190 .scope module, "ifIdLatch_tb" "ifIdLatch_tb" 2 1;
+S_0x15a607840 .scope module, "ifIdLatch_tb" "ifIdLatch_tb" 2 1;
  .timescale 0 0;
-P_0x156e08df0 .param/l "WIDTH" 0 2 1, +C4<00000000000000000000000000100000>;
-v0x156e22540_0 .var "clk", 0 0;
-v0x156e225f0_0 .var "instr_in", 31 0;
-v0x156e22680_0 .net "instr_out", 31 0, L_0x156e22a30;  1 drivers
-v0x156e22750_0 .var "pc_in", 31 0;
-v0x156e22800_0 .net "pc_out", 31 0, L_0x156e22980;  1 drivers
-v0x156e228d0_0 .var "rst", 0 0;
-S_0x156e07650 .scope module, "latch0" "ifIdLatch" 2 7, 3 1 0, S_0x156e10190;
+P_0x15a608ee0 .param/l "WIDTH" 0 2 1, +C4<00000000000000000000000000100000>;
+v0x15a620890_0 .var "clk", 0 0;
+v0x15a620940_0 .var "instr_in", 31 0;
+v0x15a6209d0_0 .net "instr_out", 31 0, v0x15a620570_0;  1 drivers
+v0x15a620aa0_0 .var "pc_in", 31 0;
+v0x15a620b50_0 .net "pc_out", 31 0, v0x15a620690_0;  1 drivers
+v0x15a620c20_0 .var "rst", 0 0;
+S_0x15a60ad80 .scope module, "latch0" "ifIdLatch" 2 7, 3 1 0, S_0x15a607840;
  .timescale 0 0;
     .port_info 0 /INPUT 1 "clk";
     .port_info 1 /INPUT 1 "rst";
@@ -24,87 +24,71 @@ S_0x156e07650 .scope module, "latch0" "ifIdLatch" 2 7, 3 1 0, S_0x156e10190;
     .port_info 3 /INPUT 32 "instr_in";
     .port_info 4 /OUTPUT 32 "pc_out";
     .port_info 5 /OUTPUT 32 "instr_out";
-P_0x156e08650 .param/l "WIDTH" 0 3 1, +C4<00000000000000000000000000100000>;
-L_0x156e22980 .functor BUFZ 32, v0x156e222b0_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
-L_0x156e22a30 .functor BUFZ 32, v0x156e220c0_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
-v0x156e07880_0 .net "clk", 0 0, v0x156e22540_0;  1 drivers
-v0x156e22020_0 .net "instr_in", 31 0, v0x156e225f0_0;  1 drivers
-v0x156e220c0_0 .var "instr_int", 31 0;
-v0x156e22150_0 .net "instr_out", 31 0, L_0x156e22a30;  alias, 1 drivers
-v0x156e221e0_0 .net "pc_in", 31 0, v0x156e22750_0;  1 drivers
-v0x156e222b0_0 .var "pc_int", 31 0;
-v0x156e22360_0 .net "pc_out", 31 0, L_0x156e22980;  alias, 1 drivers
-v0x156e22410_0 .net "rst", 0 0, v0x156e228d0_0;  1 drivers
-E_0x156e08150 .event posedge, v0x156e22410_0, v0x156e07880_0;
-    .scope S_0x156e07650;
+P_0x15a608740 .param/l "WIDTH" 0 3 1, +C4<00000000000000000000000000100000>;
+v0x15a60aef0_0 .net "clk", 0 0, v0x15a620890_0;  1 drivers
+v0x15a6204d0_0 .net "instr_in", 31 0, v0x15a620940_0;  1 drivers
+v0x15a620570_0 .var "instr_out", 31 0;
+v0x15a620600_0 .net "pc_in", 31 0, v0x15a620aa0_0;  1 drivers
+v0x15a620690_0 .var "pc_out", 31 0;
+v0x15a620760_0 .net "rst", 0 0, v0x15a620c20_0;  1 drivers
+E_0x15a608240 .event posedge, v0x15a620760_0, v0x15a60aef0_0;
+    .scope S_0x15a60ad80;
 T_0 ;
-    %wait E_0x156e08150;
-    %load/vec4 v0x156e22410_0;
-    %flag_set/vec4 8;
-    %jmp/0xz  T_0.0, 8;
-    %pushi/vec4 0, 0, 32;
-    %store/vec4 v0x156e222b0_0, 0, 32;
-    %pushi/vec4 0, 0, 32;
-    %store/vec4 v0x156e220c0_0, 0, 32;
-    %jmp T_0.1;
-T_0.0 ;
-    %load/vec4 v0x156e221e0_0;
-    %pushi/vec4 1, 0, 32;
-    %and;
-    %store/vec4 v0x156e222b0_0, 0, 32;
-    %load/vec4 v0x156e22020_0;
-    %store/vec4 v0x156e220c0_0, 0, 32;
-T_0.1 ;
+    %wait E_0x15a608240;
+    %load/vec4 v0x15a620600_0;
+    %store/vec4 v0x15a620690_0, 0, 32;
+    %load/vec4 v0x15a6204d0_0;
+    %store/vec4 v0x15a620570_0, 0, 32;
     %jmp T_0;
     .thread T_0;
-    .scope S_0x156e10190;
+    .scope S_0x15a607840;
 T_1 ;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x156e22540_0, 0, 1;
+    %store/vec4 v0x15a620890_0, 0, 1;
 T_1.0 ;
     %delay 5, 0;
-    %load/vec4 v0x156e22540_0;
+    %load/vec4 v0x15a620890_0;
     %inv;
-    %store/vec4 v0x156e22540_0, 0, 1;
+    %store/vec4 v0x15a620890_0, 0, 1;
     %jmp T_1.0;
 T_1.1 ;
     %end;
     .thread T_1;
-    .scope S_0x156e10190;
+    .scope S_0x15a607840;
 T_2 ;
     %vpi_call 2 17 "$dumpfile", "ifIdLatchTestBenchWaveForm" {0 0 0};
-    %vpi_call 2 18 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x156e10190 {0 0 0};
+    %vpi_call 2 18 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x15a607840 {0 0 0};
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x156e228d0_0, 0, 1;
+    %store/vec4 v0x15a620c20_0, 0, 1;
     %pushi/vec4 1431655765, 0, 32;
-    %store/vec4 v0x156e22750_0, 0, 32;
+    %store/vec4 v0x15a620aa0_0, 0, 32;
     %pushi/vec4 1431655765, 0, 32;
-    %store/vec4 v0x156e225f0_0, 0, 32;
+    %store/vec4 v0x15a620940_0, 0, 32;
     %delay 10, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x156e228d0_0, 0, 1;
+    %store/vec4 v0x15a620c20_0, 0, 1;
     %delay 10, 0;
-    %load/vec4 v0x156e22750_0;
+    %load/vec4 v0x15a620aa0_0;
     %ix/load 4, 1, 0;
     %flag_set/imm 4, 0;
     %shiftl 4;
-    %store/vec4 v0x156e22750_0, 0, 32;
-    %load/vec4 v0x156e225f0_0;
+    %store/vec4 v0x15a620aa0_0, 0, 32;
+    %load/vec4 v0x15a620940_0;
     %ix/load 4, 1, 0;
     %flag_set/imm 4, 0;
     %shiftl 4;
-    %store/vec4 v0x156e225f0_0, 0, 32;
+    %store/vec4 v0x15a620940_0, 0, 32;
     %delay 10, 0;
-    %load/vec4 v0x156e22750_0;
+    %load/vec4 v0x15a620aa0_0;
     %ix/load 4, 1, 0;
     %flag_set/imm 4, 0;
     %shiftl 4;
-    %store/vec4 v0x156e22750_0, 0, 32;
-    %load/vec4 v0x156e225f0_0;
+    %store/vec4 v0x15a620aa0_0, 0, 32;
+    %load/vec4 v0x15a620940_0;
     %ix/load 4, 1, 0;
     %flag_set/imm 4, 0;
     %shiftl 4;
-    %store/vec4 v0x156e225f0_0, 0, 32;
+    %store/vec4 v0x15a620940_0, 0, 32;
     %delay 10, 0;
     %vpi_call 2 31 "$finish" {0 0 0};
     %end;

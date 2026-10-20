@@ -7,16 +7,9 @@ module ifIdLatch #(parameter WIDTH = 32)(
     always @(posedge clk or posedge rst)begin
         pc_out = pc_in;
         instr_out = instr_in;
-        if(rst)begin
+        /*if(rst)begin
             pc_out = 32'h0;
             instr_out = 32'h0;
-        end
-        /*if(rst) begin
-            pc_out = 32'h0;
-            instr_out = 32'h0;
-        end else begin
-            pc_out = pc_in;
-            instr_out = instr_in;
         end*/
     end
 
