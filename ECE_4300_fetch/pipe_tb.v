@@ -1,5 +1,5 @@
 module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
-    reg clk, rst, sel;
+    reg clk, rst, sel, clk_latch;
     reg [WIDTH - 1:0] pc_input;
     wire[WIDTH - 1:0] data, pc_next, instr_output, pc_out_latch;
     
@@ -10,6 +10,7 @@ module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
         .if_id_npc(pc_next), .ex_mem_npc(pc_input));
     
     initial forever #5 clk = ~clk;
+    initial forever #5 clk_latch = ~clk_latch;
 
     integer i;
 
@@ -17,6 +18,7 @@ module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
         $dumpfile("PipeTestBenchWaveForm");
         $dumpvars(0, pipe_tb);
         clk = 0;
+        clk_latch = 0;
         rst = 1;
         sel = 1;
         pc_input = 0;

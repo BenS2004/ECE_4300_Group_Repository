@@ -8,8 +8,6 @@ module fetch(
 //internal
 wire [31:0] pc_out, pc_mux, next_pc, instr_data, mem_addr;
 
-//assign pc_mux = ex_mem_pc_src ? ex_mem_npc : next_pc;
-
 mux m0 (.y(pc_mux), .a_true(ex_mem_npc), .b_false(next_pc), .sel(ex_mem_pc_src));
 
 pc pc0(.pc_in(pc_mux), .pc_out(pc_out), .clk(clk));

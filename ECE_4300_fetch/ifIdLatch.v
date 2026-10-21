@@ -4,9 +4,9 @@ module ifIdLatch #(parameter WIDTH = 32)(
     output reg[WIDTH - 1:0] pc_out, instr_out
 );
 
-    always @(posedge clk or posedge rst)begin
-        pc_out = pc_in;
-        instr_out = instr_in;
+    always @(negedge clk or posedge rst)begin
+        pc_out <= pc_in;
+        instr_out <= instr_in;
         /*if(rst)begin
             pc_out = 32'h0;
             instr_out = 32'h0;
