@@ -1,0 +1,87 @@
+#! /opt/homebrew/Cellar/icarus-verilog/13.0/bin/vvp
+:ivl_version "13.0 (stable)" "(v13_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/13.0/lib/ivl/va_math.vpi";
+S_0x143e06120 .scope module, "signExtend_tb" "signExtend_tb" 2 1;
+ .timescale 0 0;
+v0x14491cf70_0 .net "extended", 31 0, L_0x14491d2c0;  1 drivers
+v0x14491d030_0 .var "immediate", 15 0;
+S_0x14490c740 .scope module, "s0" "signExtend" 2 6, 3 1 0, S_0x143e06120;
+ .timescale 0 0;
+    .port_info 0 /INPUT 16 "immediate";
+    .port_info 1 /OUTPUT 32 "extended";
+P_0x144907000 .param/l "WIDTH" 0 3 1, +C4<00000000000000000000000000100000>;
+v0x144905560_0 .net *"_ivl_1", 0 0, L_0x14491d0e0;  1 drivers
+v0x14491cda0_0 .net *"_ivl_3", 15 0, L_0x14491d1e0;  1 drivers
+v0x14491ce40_0 .net "extended", 31 0, L_0x14491d2c0;  alias, 1 drivers
+v0x14491ced0_0 .net "immediate", 15 0, v0x14491d030_0;  1 drivers
+L_0x14491d0e0 .part v0x14491d030_0, 15, 1;
+L_0x14491d1e0 .repeat 16, 16, L_0x14491d0e0;
+L_0x14491d2c0 .concat [ 16 16 0 0], v0x14491d030_0, L_0x14491d1e0;
+    .scope S_0x143e06120;
+T_0 ;
+    %vpi_call 2 9 "$dumpfile", "SignExtendTestBenchWaveForm" {0 0 0};
+    %vpi_call 2 10 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x143e06120 {0 0 0};
+    %pushi/vec4 0, 0, 16;
+    %store/vec4 v0x14491d030_0, 0, 16;
+    %load/vec4 v0x14491d030_0;
+    %vpi_call 2 12 "$display", "immediate: hex: %h, decimal: %d", v0x14491d030_0, S<0,vec4,s16> {1 0 0};
+    %delay 10, 0;
+    %load/vec4 v0x14491cf70_0;
+    %vpi_call 2 14 "$display", "extended: hex: %h, decimal: %d", v0x14491cf70_0, S<0,vec4,s32> {1 0 0};
+    %pushi/vec4 13, 0, 16;
+    %store/vec4 v0x14491d030_0, 0, 16;
+    %load/vec4 v0x14491d030_0;
+    %vpi_call 2 16 "$display", "immediate: hex: %h, decimal: %d", v0x14491d030_0, S<0,vec4,s16> {1 0 0};
+    %delay 10, 0;
+    %load/vec4 v0x14491cf70_0;
+    %vpi_call 2 18 "$display", "extended: hex: %h, decimal: %d", v0x14491cf70_0, S<0,vec4,s32> {1 0 0};
+    %pushi/vec4 25, 0, 16;
+    %store/vec4 v0x14491d030_0, 0, 16;
+    %load/vec4 v0x14491d030_0;
+    %vpi_call 2 20 "$display", "immediate: hex: %h, decimal: %d", v0x14491d030_0, S<0,vec4,s16> {1 0 0};
+    %delay 10, 0;
+    %load/vec4 v0x14491cf70_0;
+    %vpi_call 2 22 "$display", "extended: hex: %h, decimal: %d", v0x14491cf70_0, S<0,vec4,s32> {1 0 0};
+    %pushi/vec4 43, 0, 16;
+    %store/vec4 v0x14491d030_0, 0, 16;
+    %load/vec4 v0x14491d030_0;
+    %vpi_call 2 24 "$display", "immediate: hex: %h, decimal: %d", v0x14491d030_0, S<0,vec4,s16> {1 0 0};
+    %delay 10, 0;
+    %load/vec4 v0x14491cf70_0;
+    %vpi_call 2 26 "$display", "extended: hex: %h, decimal: %d", v0x14491cf70_0, S<0,vec4,s32> {1 0 0};
+    %pushi/vec4 65467, 0, 16;
+    %store/vec4 v0x14491d030_0, 0, 16;
+    %load/vec4 v0x14491d030_0;
+    %vpi_call 2 28 "$display", "immediate: hex: %h, decimal: %d", v0x14491d030_0, S<0,vec4,s16> {1 0 0};
+    %delay 10, 0;
+    %load/vec4 v0x14491cf70_0;
+    %vpi_call 2 30 "$display", "extended: hex: %h, decimal: %d", v0x14491cf70_0, S<0,vec4,s32> {1 0 0};
+    %pushi/vec4 65448, 0, 16;
+    %store/vec4 v0x14491d030_0, 0, 16;
+    %load/vec4 v0x14491d030_0;
+    %vpi_call 2 32 "$display", "immediate: hex: %h, decimal: %d", v0x14491d030_0, S<0,vec4,s16> {1 0 0};
+    %delay 10, 0;
+    %load/vec4 v0x14491cf70_0;
+    %vpi_call 2 34 "$display", "extended: hex: %h, decimal: %d", v0x14491cf70_0, S<0,vec4,s32> {1 0 0};
+    %pushi/vec4 65522, 0, 16;
+    %store/vec4 v0x14491d030_0, 0, 16;
+    %load/vec4 v0x14491d030_0;
+    %vpi_call 2 36 "$display", "immediate: hex: %h, decimal: %d", v0x14491d030_0, S<0,vec4,s16> {1 0 0};
+    %delay 10, 0;
+    %load/vec4 v0x14491cf70_0;
+    %vpi_call 2 38 "$display", "extended: hex: %h, decimal: %d", v0x14491cf70_0, S<0,vec4,s32> {1 0 0};
+    %vpi_call 2 39 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "signExtend_tb.v";
+    "signExtend.v";

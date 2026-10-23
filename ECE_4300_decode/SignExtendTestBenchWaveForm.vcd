@@ -1,0 +1,61 @@
+$date
+	Thu Oct 22 21:07:32 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module signExtend_tb $end
+$var wire 32 ! extended [31:0] $end
+$var reg 16 " immediate [15:0] $end
+$scope module s0 $end
+$var wire 16 # immediate [15:0] $end
+$var wire 32 $ extended [31:0] $end
+$var parameter 32 % WIDTH $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100000 %
+$end
+#0
+$dumpvars
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#10
+b1101 !
+b1101 $
+b1101 "
+b1101 #
+#20
+b11001 !
+b11001 $
+b11001 "
+b11001 #
+#30
+b101011 !
+b101011 $
+b101011 "
+b101011 #
+#40
+b11111111111111111111111110111011 !
+b11111111111111111111111110111011 $
+b1111111110111011 "
+b1111111110111011 #
+#50
+b11111111111111111111111110101000 !
+b11111111111111111111111110101000 $
+b1111111110101000 "
+b1111111110101000 #
+#60
+b11111111111111111111111111110010 !
+b11111111111111111111111111110010 $
+b1111111111110010 "
+b1111111111110010 #
+#70

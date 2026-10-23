@@ -17,19 +17,19 @@ initial begin
     rst = 0;
     opcode = 6'h00;
     #10;
-    $display("Opcode: %h, WriteBack: %h, Memory: %h, Execute: %h", opcode, wb, mem, ex);
-    opcode = 6'h02;
-    #10;
-    $display("Opcode: %h, WriteBack: %h, Memory: %h, Execute: %h", opcode, wb, mem, ex);
+    $display("Opcode: %b, WriteBack: %b, Memory: %b, Execute: %b", opcode, wb, mem, ex);
     opcode = 6'h23;
     #10;
-    $display("Opcode: %h, WriteBack: %h, Memory: %h, Execute: %h", opcode, wb, mem, ex);
+    $display("Opcode: %b, WriteBack: %b, Memory: %b, Execute: %b", opcode, wb, mem, ex);
     opcode = 6'h2b;
     #10;
-    $display("Opcode: %h, WriteBack: %h, Memory: %h, Execute: %h", opcode, wb, mem, ex);
+    $display("Opcode: %b, WriteBack: %b, Memory: %b, Execute: %b", opcode, wb, mem, ex);
+    opcode = 6'h02;
+    #10;
+    $display("Opcode: %b, WriteBack: %b, Memory: %b, Execute: %b", opcode, wb, mem, ex);
     opcode = 6'h35;
     #10;
-    $display("Opcode: %h, WriteBack: %h, Memory: %h, Execute: %h", opcode, wb, mem, ex);
+    $display("Opcode: %b, WriteBack: %b, Memory: %b, Execute: %b", opcode, wb, mem, ex);
     $finish;
 
 end
