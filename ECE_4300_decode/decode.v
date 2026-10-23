@@ -2,10 +2,10 @@
 
  
 
-`include "../src/control.v"
-`include "../src/idExLatch.v"
-`include "../src/regfile.v"
-`include "../src/signExt.v"
+`include "control.v"
+`include "idExLatch.v"
+`include "regfile.v"
+`include "signExt.v"
 
 module decode(
     input wire          clk, rst, wb_reg_write,
