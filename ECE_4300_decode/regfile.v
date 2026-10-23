@@ -14,7 +14,7 @@ module regfile #(parameter WIDTH = 32, parameter DEPTH = 32)(
     integer i;
 
     initial begin
-        $readmem("reg_init.hex")
+        $readmemh("ECE_4300_decode/reg_init.hex", registers);
     end
 
     /*initial begin

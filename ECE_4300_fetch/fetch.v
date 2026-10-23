@@ -1,9 +1,9 @@
 
-`include "pc.v"
-`include "ifIdLatch.v"
-`include "incrementer.v"
-`include "mux.v"
-`include "instrMem.v"
+`include "ECE_4300_fetch/pc.v"
+`include "ECE_4300_fetch/ifIdLatch.v"
+`include "ECE_4300_fetch/incrementer.v"
+`include "ECE_4300_fetch/mux.v"
+`include "ECE_4300_fetch/instrMem.v"
 
 module fetch(
     input wire clk, rst, ex_mem_pc_src, 

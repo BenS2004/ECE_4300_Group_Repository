@@ -11,7 +11,7 @@ module instrMem #(parameter WIDTH = 32, parameter DEPTH = 11)(
 
     always @(posedge clk or posedge rst)begin
         if(rst)begin
-            $readmemh("memory_init.hex", instructions);
+            $readmemh("ECE_4300_fetch/memory_init.hex", instructions);
         end else data = instructions[addr[11:0]];
     end
 
