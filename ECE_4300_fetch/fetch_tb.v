@@ -23,10 +23,10 @@ module fetch_tb #(parameter WIDTH = 32)();
         #10;
         for(i = 0; i < 12; i = i + 1)begin
             pc_input = 0;
-            $display("Before Tick Addr_in: %h, Instr_out: %h, Addr_out: %h", pc_input, data, pc_out_latch);
+            //$display("Before Tick Addr_in: %h, Instr_out: %h, Addr_out: %h", pc_input, data, pc_out_latch);
             #10;
             sel = 0;
-            $display("After  Tick Addr_in: %h, Instr_out: %h, Addr_out: %h", pc_input, data, pc_out_latch);
+            $display("Addr_in: %h, Instr_out: %h, Addr_out: %h", pc_input, data, pc_out_latch);
         end
         $finish;
     end

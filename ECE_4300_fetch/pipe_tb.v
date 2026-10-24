@@ -25,19 +25,21 @@ module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
 
     fetch f0(.clk(clk), .rst(rst), .ex_mem_pc_src(sel), .if_id_instr(data), 
         .if_id_npc(pc_next), .ex_mem_npc(pc_input));
-
+    
     regfile rf0(.clk(clk), .rst(rst), .regwrite(regwrite), 
         .rs(data[25:21]), .rt(data[20:16]), .rd(writereg), .writedata(writedata), 
         .A_readdat1(readdat1), .B_readdat2(readdat2));
     signExtend se0(.immediate(data[15:0]), .extended(sign_ext));
     control c0(.clk(clk), .rst(rst), .opcode(data[31:26]), .wb(ctl_wb), .mem(ctl_mem), .ex(ctl_ex));
+    
     idExLatch iel0(.clk(clk), .rst(rst), .ctl_wb(ctl_wb), .ctl_mem(ctl_mem), .ctl_ex(ctl_ex),
         .npc(pc_next), .readdat1(readdat1), .readdat2(readdat2), .sign_ext(sign_ext), 
         .instr_bits_15_11(data[15:11]), .instr_bits_20_16(data[20:16]), 
         .wb_out(wb_out), .mem_out(mem_out), .ex_out(ex_out),
         .npc_out(npc_out), .readdat1_out(readdat1_out), .readdat2_out(readdat2_out), .sign_ext_out(sign_ext_out),
         .instr_bits_15_11_out(instr_bits_15_11_out), .instr_bits_20_16_out(instr_bits_20_16_out));
-    
+    /*
+    */
     
     
     initial forever #5 clk = ~clk;
@@ -47,7 +49,7 @@ module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
     initial begin
         $dumpfile("PipeTestBenchWaveForm");
         $dumpvars(0, pipe_tb);
-        clk = 0;
+        clk = 1;
         rst = 1;
         sel = 1;
         regwrite = 0;
@@ -57,7 +59,7 @@ module pipe_tb #(parameter WIDTH = 32, parameter DEPTH = 12)();
         #10;
         rst = 0;
         #10;
-        regwrite = 1;
+        regwrite = 0;
         for(i = 0; i < 12; i = i + 1)begin
             pc_input = 0;
             writereg = i;

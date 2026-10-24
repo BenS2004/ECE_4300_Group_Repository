@@ -18,14 +18,14 @@ always @(posedge rst) begin
     ex <= 0;
 end
 
-always @(posedge clk) begin
+always @(*) begin
     case(opcode) 
         6'h00: begin //R-Type
             wb <= 2'h2;
             mem <= 3'h0;
             ex <= 4'hc;
         end
-        6'h02:begin //beq
+        6'h04:begin //beq
             wb <= 2'b0x;
             mem <= 3'h4;
             ex <= 4'bx010;
