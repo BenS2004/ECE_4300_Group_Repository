@@ -9,11 +9,13 @@ module instrMem #(parameter WIDTH = 32, parameter DEPTH = 11)(
     reg[WIDTH - 1:0] instructions [{DEPTH{1'b1}} : 0];
     integer j;
 
-    always @(posedge clk or posedge rst)begin
-        if(rst)begin
-            $readmemh("ECE_4300_fetch/memory_init.hex", instructions, 0, 10);
-            //$readmemh("memory_init.hex", instructions);
-        end else data = instructions[addr[11:0]];
+    always @(posedge rst)begin
+        $readmemh("ECE_4300_fetch/memory_init.hex", instructions, 0, 10);
+        //$readmemh("memory_init.hex", instructions);
+    end
+
+    always @(*)begin
+        data = instructions[addr[11:0]];
     end
 
 endmodule

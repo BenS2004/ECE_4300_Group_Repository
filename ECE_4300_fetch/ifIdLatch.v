@@ -4,7 +4,7 @@ module ifIdLatch #(parameter WIDTH = 32)(
     output reg[WIDTH - 1:0] pc_out, instr_out
 );
 
-    always @(negedge clk or posedge rst)begin
+    always @(posedge clk or posedge rst)begin
         pc_out <= pc_in;
         instr_out <= instr_in;
         /*if(rst)begin

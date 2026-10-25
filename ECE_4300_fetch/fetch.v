@@ -29,9 +29,6 @@ incrementer in0(.clk(clk), .rst(rst), .pc_in(pc_out), .pc_out(next_pc));
 
 instrMem inMem0(.clk(clk), .rst(rst), .addr(pc_out), .data(instr_data));
 
-//assign if_id_npc = next_pc;
-//assign if_id_instr = instr_data;
-
 ifIdLatch ifIdLatch0(.clk(clk), .rst(rst), .pc_in(next_pc), .instr_in(instr_data), .pc_out(if_id_npc), .instr_out(if_id_instr));
 
 endmodule

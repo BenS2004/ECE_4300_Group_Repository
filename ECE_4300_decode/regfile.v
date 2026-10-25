@@ -23,6 +23,10 @@ module regfile #(parameter WIDTH = 32, parameter DEPTH = 32)(
         end
     end */
 
+    always @(posedge rst) begin
+        $readmemh("ECE_4300_decode/reg_init.hex", registers, 0, 31);
+    end
+
     always @(posedge clk) begin
         if(regwrite) registers[rd] = writedata;
         registers[0] = 0;
