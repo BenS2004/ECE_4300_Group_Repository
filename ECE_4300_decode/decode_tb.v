@@ -49,7 +49,7 @@ module decode_tb();
         rst = 1;
         #10;
         rst = 0;
-        for(i = 0; i < 12; i = i + 1)begin
+        for(i = 0; i < 13; i = i + 1)begin
             $display("i = %h", i);
             $display("Ext Mem Pc: %h, If Id Instr: %h, If Id NPc: %h", ex_mem_npc, if_id_instr, if_id_npc);
             $display("Write Reg: %d, Write Data: %h", wb_write_reg_location, mem_wb_write_data);

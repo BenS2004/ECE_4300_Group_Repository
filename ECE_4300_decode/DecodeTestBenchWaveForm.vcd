@@ -1,5 +1,5 @@
 $date
-	Sun Oct 25 00:28:15 2026
+	Mon Oct 26 08:39:06 2026
 $end
 $version
 	Icarus Verilog
@@ -1131,3 +1131,53 @@ b1100 %"
 #140000
 0,
 b1100 3
+#145000
+bx *
+bx D
+bx U
+bx )
+bx C
+bx V
+bx $
+bx >
+bx [
+bx %
+bx ?
+bx Z
+bx &
+bx @
+bx Y
+b1100 '
+b1100 A
+b1100 X
+bx +
+bx E
+bx T
+bx (
+bx B
+bx W
+bx #
+bx =
+bx \
+b1101 !
+b1101 ;
+b1101 S
+b1101 m
+b1101 s
+b1110 j
+b1110 ~
+b1110 ""
+b1110 k
+b1110 o
+b1110 t
+b1110 w
+b1110 }
+b1101 i
+b1101 u
+b1101 x
+b1101 #"
+b1101 %"
+1,
+#150000
+0,
+b1101 3
