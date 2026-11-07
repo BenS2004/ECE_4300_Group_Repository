@@ -3,7 +3,7 @@
 This is the latch that receives signals form all the modules of the execute stage. Its outputs go to MEM/WB and FETCH.
 */
 module ex_mem(
-input wire aluzero, clk    
+input wire aluzero, clk,    
 input wire [1:0] ctlwb_out, 
 input wire [2:0] ctlm_out,
 input wire [4:0] muxout,
