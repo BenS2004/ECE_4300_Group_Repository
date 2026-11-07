@@ -10,8 +10,10 @@ module alu_control(
     output reg [2:0] select
     );
 //These are the function field paramters for Rtype.
+
+    //I changed line 16 to end on a comma instead of a semicolon. - dany :]
 // ALU Op
-parameter Rtype =  2'b10; //this is a 2 bit parameter, will check later Radd = 2'b10,
+parameter Rtype =  2'b10, //this is a 2 bit parameter, will check later Radd = 2'b10,
 
     Rsub = 2'b10,
 
