@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 11/16/2026 11:37:07 AM
-// Design Name: 
-// Module Name: memory_tb
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 /* Memory Stage: This uses the outputs of Execute Stage as well as combining the modules: and, data_memory, and mem_wb.
 */
 module memory_tb();
@@ -27,27 +7,32 @@ module memory_tb();
     reg [4:0] WriteReg;
     reg [1:0] WBControl;
     reg MemWrite, MemRead, Branch, Zero;
-    wire [31:0] ReadData, ALUResult_out;
-    wire [4:0] WriteReg_out;
-    wire [1:0] WBControl_out;
-    wire PCSrc;
+wire [31:0] ReadData, ALUResult_out;
+wire [4:0] WriteReg_out;
 
-    mem_stage uut (
-        .clk(clk),
-        .ALUResult(ALUResult),
-        .WriteData(WriteData),
-        .WriteReg(WriteReg),
-        .WBControl(WBControl),
-        .MemWrite(MemWrite),
-        .MemRead(MemRead),
-        .Branch(Branch),
-        .Zero(Zero),
-        .ReadData(ReadData),
-        .ALUResult_out(ALUResult_out),
-        .WriteReg_out(WriteReg_out),
-        .WBControl_out(WBControl_out),
-        .PCSrc(PCSrc)
-    );
+wire MEM_WB_regwrite;
+wire MEM_WB_memtoreg;
+wire MEM_PCSrc;
+
+memory uut (
+    .wb_ctlout(WBControl),
+    .branch(Branch),
+    .memread(MemRead),
+    .memwrite(MemWrite),
+    .zero(Zero),
+    .alu_result(ALUResult),
+    .rdata2out(WriteData),
+    .five_bit_muxout(WriteReg),
+
+    // Outputs
+    .MEM_PCSrc(MEM_PCSrc),
+    .MEM_WB_regwrite(MEM_WB_regwrite),
+    .MEM_WB_memtoreg(MEM_WB_memtoreg),
+    .read_data(ReadData),
+    .mem_alu_result(ALUResult_out),
+    .mem_write_reg(WriteReg_out)
+);
+
     initial begin
         clk = 0;
         forever #5 clk = ~clk;
