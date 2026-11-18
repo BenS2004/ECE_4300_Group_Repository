@@ -3,7 +3,16 @@
 Execute Stage: This uses the outputs of Fetch and Decode Stages as well as combining the modules: adder, bottom_mux(5-bit), alu_control, alu, top_mux (32-bit),
 and ex_mem.
 */
-module EXECUTE(
+
+`include "ECE_4300_execute/adder.v"
+`include "ECE_4300_execute/alu_control.v"
+`include "ECE_4300_execute/alu.v"
+`include "ECE_4300_execute/bottom_mux.v"
+`include "ECE_4300_execute/top_mux.v"
+`include "ECE_4300_execute/ex_mem.v"
+
+module execute(
+input wire clk,
 input wire [1:0] wb_ctl,  //11 inputs, based off of outputs of ID/EX latch (Lab 2-2)
 input wire [2:0] m_ctl,
 input wire regdst, alusrc,
@@ -37,7 +46,7 @@ top_mux top_mux3( .y(b), // output of mux is 32 bit "b" wire
 .a(s_extendout), .b(rdata2), // input a = 1'b1, b = 1'b0
 .alusrc(alusrc));
 
-ex_mem ex_mem3(
+ex_mem ex_mem3( .clk(clk),
 .ctlwb_out(wb_ctl), // inputs, which should stem from intermediate modules 
 .ctlm_out(m_ctl), .adder_out(adder_out), .aluzero(aluzero), .aluout(aluout), 
 .readdat2(rdata2), .muxout(muxout),  .wb_ctlout(wb_ctlout), // outputs going to FETCH or MEM/WB
