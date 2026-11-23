@@ -27,6 +27,7 @@ If memread is true, then read_data is re-assigned as the value in current addres
 then read_data is unaltered, and instead, the value in the current address is changed to rdata2out. 
 */
 module data_memory (
+    input wire clk,
     input wire [31:0] addr, // Memory Address
     input wire [31:0] write_data, // Memory Address Contents
 input wire memread, memwrite, // refer to Lab 2-2 Figure 2.2
@@ -35,6 +36,8 @@ output reg [31:0] read_data // Output of Memory Address Contents
 // Register Declaration
    reg [31:0] DMEM[0:255];  // 256 (2^8) words of 32-bit memory
    integer i;
+   
+ //mem initialization
 initial begin
 read_data <= 0;
 //  Initialize DMEM[0-5] from data.txt
@@ -60,20 +63,19 @@ $display("\tDMEM[%0d] = %0d", 255, DMEM[255]);
 */
    end
    
-   always@(addr) begin
+   always@(*) begin
 //finish this thread. Hint: Requires 2 if statements
-   if (memread) begin
+   if (memread)
             read_data = DMEM[addr[9:2]];
-        end
-        else begin
+        else
             read_data = 32'b0;
         end
 
         // MEMWRITE: Store
-        if (memwrite) begin
-            DMEM[addr[9:2]] = write_data;
-        end
+    always@(posedge clk) begin
+        if (memwrite)
+            DMEM[addr[9:2]] <= write_data;
 
-end
+        end
 endmodule // data_memory
 
