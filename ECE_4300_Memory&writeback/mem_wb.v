@@ -20,9 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-/* This is the latch that receives signals form all the modules of the memory stage. Its outputs go to mux of WRITE-BACK Stage and FETCH.
+* This is the latch that receives signals form all the modules of the memory stage. Its outputs go to mux of WRITE-BACK Stage and FETCH.
 */
 module mem_wb(
+input wire clk,
 input wire [1:0] control_wb_in,
 input wire [31:0] read_data_in, alu_result_in,
 input wire [4:0] write_reg_in,
@@ -38,8 +39,9 @@ mem_alu_result <= 0;
 mem_write_reg <= 0;
 //finish this thread
 end
-always@* begin
-#1
+
+always@(posedge clk) begin
+
 regwrite <= control_wb_in[1]; // refer to Lab 2-2 Figure 2.2
 memtoreg <= control_wb_in[0];
 read_data <= read_data_in;
